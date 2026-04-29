@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dqdttcqq4pny6"]
+
+[ext_resource type="Script" uid="uid://dy24h2aj0wkw7" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/bot/node/bot_node.gd" id="1_ae7oo"]
+[ext_resource type="PackedScene" uid="uid://cnygr4pwivdv1" path="res://groups/essentials/hud/rich_label/no_cache/rich_label.tscn" id="2_p7peh"]
+[ext_resource type="Theme" uid="uid://dlojc3h2w34po" path="res://groups/essentials/themes/subtle_background.tres" id="2_ytyy1"]
+
+[node name="BotNode" type="MarginContainer" unique_id=922950911]
+custom_minimum_size = Vector2(200, 0)
+offset_right = 200.0
+offset_bottom = 47.0
+mouse_filter = 2
+script = ExtResource("1_ae7oo")
+
+[node name="Panel" type="Panel" parent="." unique_id=750500221]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("2_ytyy1")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1160247265]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1900744945]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="IdLabel" parent="MarginContainer/HBoxContainer" unique_id=1893760288 instance=ExtResource("2_p7peh")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Bot [b]31[/b]"
+autowrap_mode = 0
+autowrap = false
+
+[node name="StatusLabel" parent="MarginContainer/HBoxContainer" unique_id=29614554 instance=ExtResource("2_p7peh")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[center][i]Not Deployed"
+autowrap_mode = 0
+autowrap = false
+italics = true
+center = true
+
+[node name="DurationLabel" parent="MarginContainer/HBoxContainer" unique_id=155869569 instance=ExtResource("2_p7peh")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12.54s"
+autowrap_mode = 0
+autowrap = false

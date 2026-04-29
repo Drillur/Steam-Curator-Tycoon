@@ -1,0 +1,224 @@
+[gd_scene format=3 uid="uid://boay0yme0ffei"]
+
+[ext_resource type="Script" uid="uid://behlc8a3jdh62" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/steam_game/node/steam_game_node.gd" id="1_l1uqn"]
+[ext_resource type="Theme" uid="uid://dlojc3h2w34po" path="res://groups/essentials/themes/subtle_background.tres" id="2_vyu1c"]
+[ext_resource type="PackedScene" uid="uid://cnygr4pwivdv1" path="res://groups/essentials/hud/rich_label/no_cache/rich_label.tscn" id="2_x3rvk"]
+[ext_resource type="Texture2D" uid="uid://th82alb2j4vo" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/currency/SteamCuratorTycoon_steam_game.png" id="3_10rsm"]
+[ext_resource type="PackedScene" uid="uid://bfi0uovwegdxj" path="res://groups/essentials/buttons/rich_button/rich_button.tscn" id="5_10rsm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbi1q"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="SteamGameNode" type="MarginContainer" unique_id=1000327348]
+custom_minimum_size = Vector2(390, 0)
+offset_right = 380.0
+offset_bottom = 121.0
+mouse_filter = 2
+script = ExtResource("1_l1uqn")
+
+[node name="Panel" type="Panel" parent="." unique_id=1559610363]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("2_vyu1c")
+
+[node name="Highlight" type="Panel" parent="." unique_id=1656537631]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kbi1q")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=565493201]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1281619635]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1188053586]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Header" unique_id=1874492965]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_10rsm")
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/Header" unique_id=1419789448 instance=ExtResource("2_x3rvk")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[center]Demons of the Eternal Dawn"
+autowrap_mode = 0
+autowrap = false
+center = true
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=318773958]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1743347009]
+layout_mode = 2
+size_flags_horizontal = 6
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="DaysUntilReleaseLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1528104532 instance=ExtResource("2_x3rvk")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 17)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "4 Days Until Release"
+autowrap_mode = 0
+autowrap = false
+
+[node name="FollowerLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=844284486 instance=ExtResource("2_x3rvk")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 17)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "304,505 Followers"
+autowrap_mode = 0
+autowrap = false
+
+[node name="PriceLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=802153984 instance=ExtResource("2_x3rvk")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 17)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "$69.99"
+autowrap_mode = 0
+autowrap = false
+
+[node name="CheckBoxes" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1566372732]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Emailed" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes" unique_id=324220329 instance=ExtResource("5_10rsm")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Emailed"
+color = Color(0.79296875, 0.092926025, 0.092926025, 1)
+check_button_mode = true
+
+[node name="Background" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Emailed" index="0"]
+self_modulate = Color(0.79296875, 0.092926025, 0.092926025, 1)
+mouse_filter = 2
+
+[node name="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Emailed/MarginContainer/HBox" index="1"]
+text = "Emailed"
+
+[node name="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Emailed/MarginContainer/HBox" index="2"]
+visible = true
+modulate = Color(0.79296875, 0.092926025, 0.092926025, 1)
+mouse_filter = 2
+
+[node name="InvisButton" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Emailed" index="2"]
+modulate = Color(0.79296875, 0.092926025, 0.092926025, 1)
+mouse_filter = 2
+
+[node name="Reviewed" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes" unique_id=979594687 instance=ExtResource("5_10rsm")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reviewed"
+color = Color(0.9765625, 0.030517578, 0.030517578, 1)
+check_button_mode = true
+button_pressed = false
+
+[node name="Background" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Reviewed" index="0"]
+self_modulate = Color(0.9765625, 0.030517578, 0.030517578, 1)
+mouse_filter = 2
+
+[node name="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Reviewed/MarginContainer/HBox" index="1"]
+text = "Reviewed"
+
+[node name="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Reviewed/MarginContainer/HBox" index="2"]
+visible = true
+modulate = Color(0.9765625, 0.030517578, 0.030517578, 1)
+mouse_filter = 2
+button_pressed = false
+
+[node name="InvisButton" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Reviewed" index="2"]
+modulate = Color(0.9765625, 0.030517578, 0.030517578, 1)
+mouse_filter = 2
+
+[node name="Keys" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes" unique_id=1399128047 instance=ExtResource("5_10rsm")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3,400 Keys left"
+check_button_mode = true
+
+[node name="Background" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Keys" index="0"]
+mouse_filter = 2
+
+[node name="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Keys/MarginContainer/HBox" index="1"]
+text = "3,400 Keys left"
+
+[node name="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Keys/MarginContainer/HBox" index="2"]
+visible = true
+mouse_filter = 2
+
+[node name="InvisButton" parent="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Keys" index="2"]
+mouse_filter = 2
+
+[node name="DeclinedContainer" type="MarginContainer" parent="." unique_id=1788612589]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DeclinedBackground" type="Panel" parent="DeclinedContainer" unique_id=115642420]
+unique_name_in_owner = true
+modulate = Color(1, 0.9140625, 0, 1)
+self_modulate = Color(1, 1, 1, 0.8)
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("2_vyu1c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeclinedContainer" unique_id=645730729]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="DeclinedLabel" parent="DeclinedContainer/VBoxContainer" unique_id=960659047 instance=ExtResource("2_x3rvk")]
+unique_name_in_owner = true
+modulate = Color(1, 0.9140625, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "[font_size=16][b]Declined"
+autowrap_mode = 0
+autowrap = false
+bold = true
+font_size = 16
+
+[node name="ReasonLabel" parent="DeclinedContainer/VBoxContainer" unique_id=122971290 instance=ExtResource("2_x3rvk")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "[i](Due to a trashy email)"
+autowrap_mode = 0
+autowrap = false
+italics = true
+
+[editable path="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Emailed"]
+[editable path="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Reviewed"]
+[editable path="MarginContainer/VBoxContainer/HBoxContainer/CheckBoxes/Keys"]

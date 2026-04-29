@@ -1,0 +1,28 @@
+{
+	"dependencies": [],
+	"description": "Play as a Steam Curator scammer! The Bot LORED will create Bots which will automatically:\n1. Scan SteamDB for upcoming games\n2. Request keys for \"review purposes\"\n3. Leave a review for the game, accruing followers\n4. Sell the remaining keys for profit!!!",
+	"extra": {
+		"godot": {
+			"authors": [],
+			"compatible_game_version": [
+				"0.2.40"
+			],
+			"compatible_mod_loader_version": [
+				"7.0.1"
+			],
+			"config_schema": {
+
+			},
+			"description_rich": "",
+			"image": null,
+			"incompatibilities": [],
+			"load_before": [],
+			"optional_dependencies": [],
+			"tags": []
+		}
+	},
+	"name": "SteamCuratorTycoon",
+	"namespace": "Drillur",
+	"version_number": "0.2.0",
+	"website_url": "https://github.com/Drillur/SteamCuratorTycoon"
+}

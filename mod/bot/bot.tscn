@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://b542icvrgaacm"]
+
+[ext_resource type="Script" uid="uid://claf8k6rb0ifl" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/bot/bot.gd" id="1_4doeg"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_qsmco"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_k6c53"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_nfnx2"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_k6c53"]
+
+[node name="Bot" type="Node" unique_id=1388522929]
+script = ExtResource("1_4doeg")
+
+[node name="StateChart" type="Node" parent="." unique_id=2105515156]
+unique_name_in_owner = true
+script = ExtResource("2_qsmco")
+initial_expression_properties = {
+&"email_duration": 5.0,
+&"idle_duration": 1.0,
+&"review_duration": 10.0,
+&"sell_duration": 15.0
+}
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="WorkStatus" type="Node" parent="StateChart" unique_id=1754734294]
+script = ExtResource("3_k6c53")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/WorkStatus" unique_id=1316412646]
+script = ExtResource("4_nfnx2")
+
+[node name="SellKey" type="Node" parent="StateChart/WorkStatus/Idle" unique_id=199946415]
+script = ExtResource("5_k6c53")
+to = NodePath("../../Working/SellKey")
+event = &"sell_key"
+delay_in_seconds = "0.0"
+
+[node name="ReviewGame" type="Node" parent="StateChart/WorkStatus/Idle" unique_id=271371507]
+script = ExtResource("5_k6c53")
+to = NodePath("../../Working/ReviewGame")
+event = &"review_game"
+delay_in_seconds = "0.0"
+
+[node name="SendEmail" type="Node" parent="StateChart/WorkStatus/Idle" unique_id=1289558333]
+script = ExtResource("5_k6c53")
+to = NodePath("../../Working/SendEmail")
+event = &"send_email"
+delay_in_seconds = "0.0"
+
+[node name="Cooldown" type="Node" parent="StateChart/WorkStatus/Idle" unique_id=1537520291]
+script = ExtResource("5_k6c53")
+to = NodePath("../../Cooldown")
+event = &"no_tasks_available"
+delay_in_seconds = "0.0"
+
+[node name="Working" type="Node" parent="StateChart/WorkStatus" unique_id=2114147905]
+script = ExtResource("3_k6c53")
+initial_state = NodePath("SellKey")
+
+[node name="SellKey" type="Node" parent="StateChart/WorkStatus/Working" unique_id=225931986]
+unique_name_in_owner = true
+script = ExtResource("4_nfnx2")
+
+[node name="Idle" type="Node" parent="StateChart/WorkStatus/Working/SellKey" unique_id=555035881]
+script = ExtResource("5_k6c53")
+to = NodePath("../../../Idle")
+delay_in_seconds = "sell_duration * randf_range(0.9, 1.1)"
+
+[node name="ReviewGame" type="Node" parent="StateChart/WorkStatus/Working" unique_id=389840975]
+unique_name_in_owner = true
+script = ExtResource("4_nfnx2")
+
+[node name="Idle" type="Node" parent="StateChart/WorkStatus/Working/ReviewGame" unique_id=247315205]
+script = ExtResource("5_k6c53")
+to = NodePath("../../../Idle")
+delay_in_seconds = "review_duration * randf_range(0.9, 1.1)"
+
+[node name="SendEmail" type="Node" parent="StateChart/WorkStatus/Working" unique_id=333572667]
+unique_name_in_owner = true
+script = ExtResource("4_nfnx2")
+
+[node name="Idle" type="Node" parent="StateChart/WorkStatus/Working/SendEmail" unique_id=2139262706]
+script = ExtResource("5_k6c53")
+to = NodePath("../../../Idle")
+delay_in_seconds = "email_duration * randf_range(0.9, 1.1)"
+
+[node name="Cooldown" type="Node" parent="StateChart/WorkStatus" unique_id=683737426]
+unique_name_in_owner = true
+editor_description = "This state is entered when no tasks are found while in the Idle state. It redirects to Idle again after one second."
+script = ExtResource("4_nfnx2")
+
+[node name="Idle" type="Node" parent="StateChart/WorkStatus/Cooldown" unique_id=1625207046]
+unique_name_in_owner = true
+script = ExtResource("5_k6c53")
+to = NodePath("../../Idle")
+delay_in_seconds = "idle_duration"
+
+[node name="StopWorking" type="Node" parent="StateChart/WorkStatus" unique_id=1005838315]
+script = ExtResource("5_k6c53")
+to = NodePath("../Idle")
+event = &"stop_working"
+delay_in_seconds = "0.0"
+
+[connection signal="state_entered" from="StateChart/WorkStatus/Idle" to="." method="_on_idle_state_entered"]
+[connection signal="child_state_exited" from="StateChart/WorkStatus/Working" to="." method="_on_working_child_state_exited"]
+[connection signal="state_entered" from="StateChart/WorkStatus/Working/SellKey" to="." method="_on_sell_key_state_entered"]
+[connection signal="state_exited" from="StateChart/WorkStatus/Working/SellKey" to="." method="_on_sell_key_state_exited"]
+[connection signal="state_processing" from="StateChart/WorkStatus/Working/SellKey" to="." method="_on_sell_key_state_processing"]
+[connection signal="state_entered" from="StateChart/WorkStatus/Working/ReviewGame" to="." method="_on_review_game_state_entered"]
+[connection signal="state_exited" from="StateChart/WorkStatus/Working/ReviewGame" to="." method="_on_review_game_state_exited"]
+[connection signal="state_processing" from="StateChart/WorkStatus/Working/ReviewGame" to="." method="_on_review_game_state_processing"]
+[connection signal="state_entered" from="StateChart/WorkStatus/Working/SendEmail" to="." method="_on_send_email_state_entered"]
+[connection signal="state_exited" from="StateChart/WorkStatus/Working/SendEmail" to="." method="_on_send_email_state_exited"]
+[connection signal="state_processing" from="StateChart/WorkStatus/Working/SendEmail" to="." method="_on_send_email_state_processing"]
+[connection signal="state_entered" from="StateChart/WorkStatus/Cooldown" to="." method="_on_cooldown_state_entered"]
+[connection signal="state_exited" from="StateChart/WorkStatus/Cooldown" to="." method="_on_cooldown_state_exited"]
+[connection signal="state_processing" from="StateChart/WorkStatus/Cooldown" to="." method="_on_cooldown_state_processing"]
+[connection signal="taken" from="StateChart/WorkStatus/StopWorking" to="." method="_on_stop_working_taken"]

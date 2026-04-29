@@ -1,0 +1,695 @@
+[gd_scene format=3 uid="uid://2btnc1bb4qrj"]
+
+[ext_resource type="Script" uid="uid://cwrsytt20dbkt" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/stages/curator_1.gd" id="1_1o464"]
+[ext_resource type="Theme" uid="uid://dlojc3h2w34po" path="res://groups/essentials/themes/subtle_background.tres" id="2_0lgoo"]
+[ext_resource type="PackedScene" uid="uid://cnygr4pwivdv1" path="res://groups/essentials/hud/rich_label/no_cache/rich_label.tscn" id="2_318v0"]
+[ext_resource type="PackedScene" uid="uid://dqdttcqq4pny6" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/bot/node/no_cache/bot_node.tscn" id="2_gmilg"]
+[ext_resource type="PackedScene" uid="uid://boay0yme0ffei" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/steam_game/node/no_cache/steam_game_node.tscn" id="3_318v0"]
+[ext_resource type="Texture2D" uid="uid://bcknqen28hqr5" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/currency/SteamCuratorTycoon_refactor.png" id="4_j40gx"]
+[ext_resource type="PackedScene" uid="uid://b542icvrgaacm" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/bot/bot.tscn" id="5_318v0"]
+[ext_resource type="Theme" uid="uid://bbsyitixspj7m" path="res://groups/essentials/themes/standard/standard.tres" id="5_vag62"]
+[ext_resource type="Texture2D" uid="uid://boph3xhtia3gc" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/currency/SteamCuratorTycoon_key.png" id="6_4t48p"]
+[ext_resource type="Script" uid="uid://cdqy3dn2x4ufs" path="res://groups/essentials/hud/rich_label/rich_label.gd" id="6_ssvuy"]
+[ext_resource type="Texture2D" uid="uid://xenkcj2akoet" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/currency/SteamCuratorTycoon_follower.png" id="7_sslqu"]
+[ext_resource type="Texture2D" uid="uid://bo1euqbgur8jo" path="res://groups/currency/icons/stage_1/cash_shop/dollar.png" id="8_i5n13"]
+[ext_resource type="Theme" uid="uid://boqclar58m1s5" path="res://groups/essentials/themes/substandard/substandard.tres" id="10_8fr1x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mf2bk"]
+
+[node name="curator1" type="MarginContainer" unique_id=294784525]
+offset_right = 1116.0
+offset_bottom = 4925.0
+mouse_filter = 2
+script = ExtResource("1_1o464")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1473714143]
+layout_mode = 2
+mouse_filter = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer" unique_id=642265544]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 250
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" unique_id=636520559]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=2086693280]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1013892150]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="bot" type="Panel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1521560151]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mf2bk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1369827490]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1353511246]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer" unique_id=922336766]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("2_0lgoo")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer" unique_id=1203369538]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer" unique_id=507278851]
+custom_minimum_size = Vector2(171, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer" unique_id=921616656]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer/HBoxContainer" unique_id=1932550475]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_j40gx")
+
+[node name="RichLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer/HBoxContainer" unique_id=1933542070 instance=ExtResource("2_318v0")]
+layout_mode = 2
+text = "Refactors"
+autowrap_mode = 0
+autowrap = false
+
+[node name="RefactorLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer" unique_id=1358783220 instance=ExtResource("2_318v0")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "[b]1.34 SaVg"
+autowrap_mode = 0
+autowrap = false
+bold = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer" unique_id=1195313339]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer/HBoxContainer2" unique_id=2140844247]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_4t48p")
+
+[node name="RichLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer/HBoxContainer2" unique_id=1296745342 instance=ExtResource("2_318v0")]
+layout_mode = 2
+text = "Key gain"
+autowrap_mode = 0
+autowrap = false
+
+[node name="KeyGainMultiplierLabel" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer" unique_id=853999375]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme = ExtResource("5_vag62")
+bbcode_enabled = true
+text = "[b]1.4"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("6_ssvuy")
+autowrap = false
+bold = true
+prepended_text = "x"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer" unique_id=809238961]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer/HBoxContainer3" unique_id=955263687]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_sslqu")
+
+[node name="RichLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer/HBoxContainer3" unique_id=475522380 instance=ExtResource("2_318v0")]
+layout_mode = 2
+text = "Follower gain"
+autowrap_mode = 0
+autowrap = false
+
+[node name="FollowerGainMultiplierLabel" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer" unique_id=1696396437]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme = ExtResource("5_vag62")
+bbcode_enabled = true
+text = "[b]x3"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("6_ssvuy")
+autowrap = false
+bold = true
+prepended_text = "x"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer" unique_id=1556956653]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer/HBoxContainer4" unique_id=764486469]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("8_i5n13")
+
+[node name="RichLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer/HBoxContainer4" unique_id=1100017036 instance=ExtResource("2_318v0")]
+layout_mode = 2
+text = "Key value"
+autowrap_mode = 0
+autowrap = false
+
+[node name="KeyValueMultiplierLabel" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MarginContainer/GridContainer" unique_id=1638864811]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme = ExtResource("5_vag62")
+bbcode_enabled = true
+text = "[b]x1.23 SaVg"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("6_ssvuy")
+autowrap = false
+bold = true
+prepended_text = "x"
+
+[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=979726435]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer2" unique_id=486315797]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("2_0lgoo")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer2" unique_id=1801857535]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="BotLog" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer2/MarginContainer" unique_id=2031731742 instance=ExtResource("2_318v0")]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("10_8fr1x")
+text = "- A harmful review yielded [b]+3.12 SaVg[/b] XX Followers"
+
+[node name="Bots" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1481686913]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots" unique_id=376820318]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/HBoxContainer2" unique_id=2079365855]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 1
+
+[node name="CurrentBotsLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/HBoxContainer2/HBoxContainer" unique_id=1526276222 instance=ExtResource("2_318v0")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3"
+autowrap_mode = 0
+autowrap = false
+
+[node name="Slash" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/HBoxContainer2/HBoxContainer" unique_id=960659047 instance=ExtResource("2_318v0")]
+layout_mode = 2
+text = "/"
+autowrap_mode = 0
+autowrap = false
+
+[node name="TotalBotsLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/HBoxContainer2/HBoxContainer" unique_id=211598452 instance=ExtResource("2_318v0")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "4"
+autowrap_mode = 0
+autowrap = false
+
+[node name="RichLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/HBoxContainer2" unique_id=391651626 instance=ExtResource("2_318v0")]
+layout_mode = 2
+text = "Bots"
+autowrap_mode = 0
+autowrap = false
+
+[node name="BotNodes" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots" unique_id=1284018582]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="BotNode0" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/BotNodes" unique_id=2060060436 instance=ExtResource("2_gmilg")]
+layout_mode = 2
+
+[node name="BotNode1" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/BotNodes" unique_id=2103084986 instance=ExtResource("2_gmilg")]
+layout_mode = 2
+
+[node name="BotNode2" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/BotNodes" unique_id=1575064314 instance=ExtResource("2_gmilg")]
+layout_mode = 2
+
+[node name="BotNode3" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/BotNodes" unique_id=1398152883 instance=ExtResource("2_gmilg")]
+layout_mode = 2
+
+[node name="BotNode4" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/BotNodes" unique_id=1795887970 instance=ExtResource("2_gmilg")]
+layout_mode = 2
+
+[node name="BotNode5" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/BotNodes" unique_id=1067251956 instance=ExtResource("2_gmilg")]
+layout_mode = 2
+
+[node name="BotNode6" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/BotNodes" unique_id=2057331676 instance=ExtResource("2_gmilg")]
+layout_mode = 2
+
+[node name="BotNode7" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/BotNodes" unique_id=1194354970 instance=ExtResource("2_gmilg")]
+layout_mode = 2
+
+[node name="BotNode8" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/BotNodes" unique_id=316929632 instance=ExtResource("2_gmilg")]
+layout_mode = 2
+
+[node name="BotNode9" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/BotNodes" unique_id=969301034 instance=ExtResource("2_gmilg")]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots" unique_id=1417286439]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="BotCountLabel2" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/VBoxContainer2" unique_id=535380717]
+modulate = Color(0.75, 0.75, 0.75, 1)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "Bots will loop through every game, performing these tasks:"
+fit_content = true
+
+[node name="BotCountLabel4" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/VBoxContainer2" unique_id=1747970031]
+modulate = Color(0.75, 0.75, 0.75, 1)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "1. Email developers for keys!"
+fit_content = true
+
+[node name="BotCountLabel3" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/VBoxContainer2" unique_id=481271362]
+modulate = Color(0.75, 0.75, 0.75, 1)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "2. Review games for Followers!"
+fit_content = true
+
+[node name="BotCountLabel5" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/VBoxContainer2" unique_id=779959644]
+modulate = Color(0.75, 0.75, 0.75, 1)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "3. Sell keys for Bux!"
+fit_content = true
+
+[node name="SteamGames" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1948799488]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="RefreshLabel" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames" unique_id=1666279284]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme = ExtResource("5_vag62")
+text = "Games refresh daily"
+fit_content = true
+autowrap_mode = 0
+
+[node name="SteamGames" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames" unique_id=1859492695]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="SteamGameNode0" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=515999298 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode1" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=2052342453 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode2" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=436406787 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode3" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=1889873844 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode4" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=836576157 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode5" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=622848964 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode6" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=530444677 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode7" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=1062995215 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode8" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=1875422720 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode9" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=1548774927 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode10" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=941167832 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode11" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=593841215 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode12" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=2030881686 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode13" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=374727960 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode14" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=198268085 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode15" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=1490846797 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode16" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=152987623 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode17" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=647427098 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode18" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=175219839 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="SteamGameNode19" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/SteamGames" unique_id=1006510740 instance=ExtResource("3_318v0")]
+layout_mode = 2
+
+[node name="OverlayUIElements" type="MarginContainer" parent="." unique_id=536453310]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 24
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="OverlayUIElements" unique_id=434930783]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="OverlayUIElements/MarginContainer" unique_id=928052038]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("2_0lgoo")
+
+[node name="MarginContainer" type="MarginContainer" parent="OverlayUIElements/MarginContainer" unique_id=1237964380]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OverlayUIElements/MarginContainer/MarginContainer" unique_id=2136514154]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DateLabel" type="RichTextLabel" parent="OverlayUIElements/MarginContainer/MarginContainer/VBoxContainer" unique_id=890942399]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme = ExtResource("5_vag62")
+text = "21:00"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("6_ssvuy")
+autowrap = false
+
+[node name="TimeLabel" type="RichTextLabel" parent="OverlayUIElements/MarginContainer/MarginContainer/VBoxContainer" unique_id=588157169]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme = ExtResource("5_vag62")
+text = "21:00"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("6_ssvuy")
+autowrap = false
+
+[node name="Bots" type="Node" parent="." unique_id=1034272196]
+unique_name_in_owner = true
+
+[node name="Bot0" parent="Bots" unique_id=1388522929 instance=ExtResource("5_318v0")]
+
+[node name="Bot1" parent="Bots" unique_id=1458140193 instance=ExtResource("5_318v0")]
+
+[node name="Bot2" parent="Bots" unique_id=327568459 instance=ExtResource("5_318v0")]
+
+[node name="Bot3" parent="Bots" unique_id=979124230 instance=ExtResource("5_318v0")]
+
+[node name="Bot4" parent="Bots" unique_id=1634708184 instance=ExtResource("5_318v0")]
+
+[node name="Bot5" parent="Bots" unique_id=1645688841 instance=ExtResource("5_318v0")]
+
+[node name="Bot6" parent="Bots" unique_id=988436807 instance=ExtResource("5_318v0")]
+
+[node name="Bot7" parent="Bots" unique_id=277384017 instance=ExtResource("5_318v0")]
+
+[node name="Bot8" parent="Bots" unique_id=1003611677 instance=ExtResource("5_318v0")]
+
+[node name="Bot9" parent="Bots" unique_id=708245984 instance=ExtResource("5_318v0")]
+
+[node name="Bot10" parent="Bots" unique_id=1220038936 instance=ExtResource("5_318v0")]
+
+[node name="Bot11" parent="Bots" unique_id=733187751 instance=ExtResource("5_318v0")]
+
+[node name="Bot12" parent="Bots" unique_id=502655441 instance=ExtResource("5_318v0")]
+
+[node name="Bot13" parent="Bots" unique_id=1133928685 instance=ExtResource("5_318v0")]
+
+[node name="Bot14" parent="Bots" unique_id=1967915860 instance=ExtResource("5_318v0")]
+
+[node name="Bot15" parent="Bots" unique_id=1310369592 instance=ExtResource("5_318v0")]
+
+[node name="Bot16" parent="Bots" unique_id=2009853391 instance=ExtResource("5_318v0")]
+
+[node name="Bot17" parent="Bots" unique_id=1997523799 instance=ExtResource("5_318v0")]
+
+[node name="Bot18" parent="Bots" unique_id=644296854 instance=ExtResource("5_318v0")]
+
+[node name="Bot19" parent="Bots" unique_id=247467141 instance=ExtResource("5_318v0")]
+
+[node name="Bot20" parent="Bots" unique_id=916886197 instance=ExtResource("5_318v0")]
+
+[node name="Bot21" parent="Bots" unique_id=419497429 instance=ExtResource("5_318v0")]
+
+[node name="Bot22" parent="Bots" unique_id=488567385 instance=ExtResource("5_318v0")]
+
+[node name="Bot23" parent="Bots" unique_id=1070469101 instance=ExtResource("5_318v0")]
+
+[node name="Bot24" parent="Bots" unique_id=1633852411 instance=ExtResource("5_318v0")]
+
+[node name="Bot25" parent="Bots" unique_id=1695605626 instance=ExtResource("5_318v0")]
+
+[node name="Bot26" parent="Bots" unique_id=602187461 instance=ExtResource("5_318v0")]
+
+[node name="Bot27" parent="Bots" unique_id=179555144 instance=ExtResource("5_318v0")]
+
+[node name="Bot28" parent="Bots" unique_id=1510871863 instance=ExtResource("5_318v0")]
+
+[node name="Bot29" parent="Bots" unique_id=355008740 instance=ExtResource("5_318v0")]
+
+[node name="Bot30" parent="Bots" unique_id=146123116 instance=ExtResource("5_318v0")]
+
+[node name="Bot31" parent="Bots" unique_id=1821942034 instance=ExtResource("5_318v0")]
+
+[node name="Bot32" parent="Bots" unique_id=1136128747 instance=ExtResource("5_318v0")]
+
+[node name="Bot33" parent="Bots" unique_id=1816481678 instance=ExtResource("5_318v0")]
+
+[node name="Bot34" parent="Bots" unique_id=2127468567 instance=ExtResource("5_318v0")]
+
+[node name="Bot35" parent="Bots" unique_id=1545674674 instance=ExtResource("5_318v0")]
+
+[node name="Bot36" parent="Bots" unique_id=587650721 instance=ExtResource("5_318v0")]
+
+[node name="Bot37" parent="Bots" unique_id=1245568887 instance=ExtResource("5_318v0")]
+
+[node name="Bot38" parent="Bots" unique_id=94667916 instance=ExtResource("5_318v0")]
+
+[node name="Bot39" parent="Bots" unique_id=1305652361 instance=ExtResource("5_318v0")]
+
+[node name="Bot40" parent="Bots" unique_id=67749778 instance=ExtResource("5_318v0")]
+
+[node name="Bot41" parent="Bots" unique_id=1633475738 instance=ExtResource("5_318v0")]
+
+[node name="Bot42" parent="Bots" unique_id=904529556 instance=ExtResource("5_318v0")]
+
+[node name="Bot43" parent="Bots" unique_id=1858680488 instance=ExtResource("5_318v0")]
+
+[node name="Bot44" parent="Bots" unique_id=687549927 instance=ExtResource("5_318v0")]
+
+[node name="Bot45" parent="Bots" unique_id=2066575453 instance=ExtResource("5_318v0")]
+
+[node name="Bot46" parent="Bots" unique_id=669923880 instance=ExtResource("5_318v0")]
+
+[node name="Bot47" parent="Bots" unique_id=1080302167 instance=ExtResource("5_318v0")]
+
+[node name="Bot48" parent="Bots" unique_id=1645588592 instance=ExtResource("5_318v0")]
+
+[node name="Bot49" parent="Bots" unique_id=1377720134 instance=ExtResource("5_318v0")]
+
+[node name="Bot50" parent="Bots" unique_id=1807155125 instance=ExtResource("5_318v0")]
+
+[node name="Bot51" parent="Bots" unique_id=1912930761 instance=ExtResource("5_318v0")]
+
+[node name="Bot52" parent="Bots" unique_id=424782951 instance=ExtResource("5_318v0")]
+
+[node name="Bot53" parent="Bots" unique_id=447873454 instance=ExtResource("5_318v0")]
+
+[node name="Bot54" parent="Bots" unique_id=368638229 instance=ExtResource("5_318v0")]
+
+[node name="Bot55" parent="Bots" unique_id=678771852 instance=ExtResource("5_318v0")]
+
+[node name="Bot56" parent="Bots" unique_id=870192808 instance=ExtResource("5_318v0")]
+
+[node name="Bot57" parent="Bots" unique_id=1866058893 instance=ExtResource("5_318v0")]
+
+[node name="Bot58" parent="Bots" unique_id=2034417519 instance=ExtResource("5_318v0")]
+
+[node name="Bot59" parent="Bots" unique_id=1667501358 instance=ExtResource("5_318v0")]
+
+[node name="Bot60" parent="Bots" unique_id=462823847 instance=ExtResource("5_318v0")]
+
+[node name="Bot61" parent="Bots" unique_id=1399383460 instance=ExtResource("5_318v0")]
+
+[node name="Bot62" parent="Bots" unique_id=2116512303 instance=ExtResource("5_318v0")]
+
+[node name="Bot63" parent="Bots" unique_id=195380052 instance=ExtResource("5_318v0")]
+
+[node name="Bot64" parent="Bots" unique_id=184280856 instance=ExtResource("5_318v0")]
+
+[node name="Bot65" parent="Bots" unique_id=1976221718 instance=ExtResource("5_318v0")]
+
+[node name="Bot66" parent="Bots" unique_id=314142930 instance=ExtResource("5_318v0")]
+
+[node name="Bot67" parent="Bots" unique_id=1465263587 instance=ExtResource("5_318v0")]
+
+[node name="Bot68" parent="Bots" unique_id=484543736 instance=ExtResource("5_318v0")]
+
+[node name="Bot69" parent="Bots" unique_id=1989645765 instance=ExtResource("5_318v0")]
+
+[node name="Bot70" parent="Bots" unique_id=358922419 instance=ExtResource("5_318v0")]
+
+[node name="Bot71" parent="Bots" unique_id=1097683632 instance=ExtResource("5_318v0")]
+
+[node name="Bot72" parent="Bots" unique_id=337714869 instance=ExtResource("5_318v0")]
+
+[node name="Bot73" parent="Bots" unique_id=1073279894 instance=ExtResource("5_318v0")]
+
+[node name="Bot74" parent="Bots" unique_id=1442066001 instance=ExtResource("5_318v0")]
+
+[node name="Bot75" parent="Bots" unique_id=277515866 instance=ExtResource("5_318v0")]
+
+[node name="Bot76" parent="Bots" unique_id=1046131989 instance=ExtResource("5_318v0")]
+
+[node name="Bot77" parent="Bots" unique_id=19655488 instance=ExtResource("5_318v0")]
+
+[node name="Bot78" parent="Bots" unique_id=507915500 instance=ExtResource("5_318v0")]
+
+[node name="Bot79" parent="Bots" unique_id=2085808497 instance=ExtResource("5_318v0")]
+
+[node name="Bot80" parent="Bots" unique_id=1451830317 instance=ExtResource("5_318v0")]
+
+[node name="Bot81" parent="Bots" unique_id=1188400052 instance=ExtResource("5_318v0")]
+
+[node name="Bot82" parent="Bots" unique_id=1865141797 instance=ExtResource("5_318v0")]
+
+[node name="Bot83" parent="Bots" unique_id=1827000774 instance=ExtResource("5_318v0")]
+
+[node name="Bot84" parent="Bots" unique_id=145362131 instance=ExtResource("5_318v0")]
+
+[node name="Bot85" parent="Bots" unique_id=1121018062 instance=ExtResource("5_318v0")]
+
+[node name="Bot86" parent="Bots" unique_id=2145255645 instance=ExtResource("5_318v0")]
+
+[node name="Bot87" parent="Bots" unique_id=2054094958 instance=ExtResource("5_318v0")]
+
+[node name="Bot88" parent="Bots" unique_id=1425855256 instance=ExtResource("5_318v0")]
+
+[node name="Bot89" parent="Bots" unique_id=1846702625 instance=ExtResource("5_318v0")]
+
+[node name="Bot90" parent="Bots" unique_id=955172997 instance=ExtResource("5_318v0")]
+
+[node name="Bot91" parent="Bots" unique_id=1639951327 instance=ExtResource("5_318v0")]
+
+[node name="Bot92" parent="Bots" unique_id=1412803925 instance=ExtResource("5_318v0")]
+
+[node name="Bot93" parent="Bots" unique_id=924214628 instance=ExtResource("5_318v0")]
+
+[node name="Bot94" parent="Bots" unique_id=1060267350 instance=ExtResource("5_318v0")]
+
+[node name="Bot95" parent="Bots" unique_id=176880210 instance=ExtResource("5_318v0")]
+
+[node name="Bot96" parent="Bots" unique_id=1275175806 instance=ExtResource("5_318v0")]
+
+[node name="Bot97" parent="Bots" unique_id=1572715915 instance=ExtResource("5_318v0")]
+
+[node name="Bot98" parent="Bots" unique_id=1787304708 instance=ExtResource("5_318v0")]
+
+[node name="Bot99" parent="Bots" unique_id=1827359976 instance=ExtResource("5_318v0")]
+
+[connection signal="gui_input" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/BotNodes" to="." method="_on_bots_gui_input"]
