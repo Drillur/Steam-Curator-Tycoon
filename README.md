@@ -1,0 +1,1 @@
+This is an example mod for [LORED](https://store.steampowered.com/app/3418150/LORED/) using the [Godot Mod Loader](https://github.com/GodotModding/godot-mod-loader) structure. This will be the first item on the [LORED Workshop](https://steamcommunity.com/app/3418150/workshop/)!
