@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dqdttcqq4pny6"]
 
 [ext_resource type="Script" uid="uid://dy24h2aj0wkw7" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/bot/node/bot_node.gd" id="1_ae7oo"]
-[ext_resource type="PackedScene" uid="uid://cnygr4pwivdv1" path="res://groups/essentials/hud/rich_label/no_cache/rich_label.tscn" id="2_p7peh"]
+[ext_resource type="PackedScene" uid="uid://cnygr4pwivdv1" path="res://groups/essentials/hud/rich_label/rich_label.tscn" id="2_p7peh"]
 [ext_resource type="Theme" uid="uid://dlojc3h2w34po" path="res://groups/essentials/themes/subtle_background.tres" id="2_ytyy1"]
 
 [node name="BotNode" type="MarginContainer" unique_id=922950911]

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cwrsytt20dbkt" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/stages/curator_1.gd" id="1_1o464"]
 [ext_resource type="Theme" uid="uid://dlojc3h2w34po" path="res://groups/essentials/themes/subtle_background.tres" id="2_0lgoo"]
-[ext_resource type="PackedScene" uid="uid://cnygr4pwivdv1" path="res://groups/essentials/hud/rich_label/no_cache/rich_label.tscn" id="2_318v0"]
-[ext_resource type="PackedScene" uid="uid://dqdttcqq4pny6" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/bot/node/no_cache/bot_node.tscn" id="2_gmilg"]
-[ext_resource type="PackedScene" uid="uid://boay0yme0ffei" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/steam_game/node/no_cache/steam_game_node.tscn" id="3_318v0"]
+[ext_resource type="PackedScene" uid="uid://cnygr4pwivdv1" path="res://groups/essentials/hud/rich_label/rich_label.tscn" id="2_318v0"]
+[ext_resource type="PackedScene" uid="uid://dqdttcqq4pny6" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/bot/node/bot_node.tscn" id="2_gmilg"]
+[ext_resource type="PackedScene" uid="uid://boay0yme0ffei" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/steam_game/node/steam_game_node.tscn" id="3_318v0"]
 [ext_resource type="Texture2D" uid="uid://bcknqen28hqr5" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/currency/SteamCuratorTycoon_refactor.png" id="4_j40gx"]
 [ext_resource type="PackedScene" uid="uid://b542icvrgaacm" path="res://mods-unpacked/Drillur-SteamCuratorTycoon/mod/bot/bot.tscn" id="5_318v0"]
 [ext_resource type="Theme" uid="uid://bbsyitixspj7m" path="res://groups/essentials/themes/standard/standard.tres" id="5_vag62"]

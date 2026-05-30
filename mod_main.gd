@@ -43,16 +43,16 @@ func _install_script_hook_files() -> void:
 	#ModLoaderMod.add_hook(_post_init,
 			#"res://groups/upgrade/upgrades/upgrade.gd",
 			#"_post_init")
-	ModLoaderMod.install_script_hooks(
-			"res://groups/upgrade/upgrades/upgrade.gd",
-			extensions_dir_path.path_join("upgrade/upgrades/sct_upgrade.gd"))
+	#ModLoaderMod.install_script_hooks(
+			#"res://groups/upgrade/upgrades/upgrade.gd",
+			#extensions_dir_path.path_join("upgrade/upgrades/sct_upgrade.gd"))
 	
 	#ModLoaderMod.add_hook(_can_start_job,
 			#"res://groups/lored/scripts/lored.gd",
 			#"_can_start_job")
-	ModLoaderMod.install_script_hooks(
-			"res://groups/lored/scripts/lored.gd",
-			extensions_dir_path.path_join("lored/scripts/sct_lored.gd"))
+	#ModLoaderMod.install_script_hooks(
+			#"res://groups/lored/scripts/lored.gd",
+			#extensions_dir_path.path_join("lored/scripts/sct_lored.gd"))
 
 
 #endregion
@@ -74,9 +74,10 @@ func _ready() -> void:
 	
 	calendar = Calendar.new(24.0)
 	calendar.start()
-	_init_steam_games()
 	
-	await Cacher.done
+	await Cacher.done.became_true
+	
+	_init_steam_games()
 	
 	Main.instance.saved[&"SteamCuratorTycoon_calendar"] = calendar
 

@@ -1,16 +1,12 @@
-extends Object
+extends Upgrade
 
 
 static var curator1: MarginContainer
 static var bot1: Node
 
 
-func _post_init(chain: ModLoaderHookChain) -> void:
-	chain.execute_next()
-	
-	var upgrade: Upgrade = chain.reference_object
-	if upgrade == null:
-		return
+func _post_init() -> void:
+	super()
 	
 	await Main.await_done()
 	
@@ -20,7 +16,7 @@ func _post_init(chain: ModLoaderHookChain) -> void:
 	
 	var my_method: Callable
 	
-	match upgrade.key:
+	match key:
 		# BotLimit upgrades
 		#&"bot_limit1", &"bot_limit2", &"bot_limit3", &"bot_limit4", \
 		#&"bot_limit5", &"xbot_limit":
@@ -36,8 +32,7 @@ func _post_init(chain: ModLoaderHookChain) -> void:
 			my_method = _on_bot_weight_changed
 		
 		# ChartUpdate upgrades
-		&"chart_update_rate1", &"chart_update_rate2", &"chart_update_rate3", \
-		&"chart_update_rate4":
+		&"chart_update_rate1", &"chart_update_rate2", &"chart_update_rate3",  &"chart_update_rate4":
 			my_method = _on_chart_update_changed
 		
 		# ChartLimit upgrades
@@ -48,37 +43,34 @@ func _post_init(chain: ModLoaderHookChain) -> void:
 		&"xclock_hour_duration1":
 			my_method = _on_clock_upgrade_changed
 	
-	if my_method != null:
-		upgrade.applied.changed.connect(my_method.call.bind(upgrade))
-		if upgrade.applied.is_true():
-			my_method.call(upgrade)
+	if my_method:
+		applied.changed.connect(my_method.call)
+		if applied.is_true():
+			my_method.call()
 
 
-func _init_mod_effect(chain: ModLoaderHookChain,
-		_op_type: Upgrade.OpType, _operator: String,
+func _init_mod_effect(_op_type: Upgrade.OpType, _operator: String,
 		_affected_object1: String, _affected_object2: String,
 		_effect1: String, _effect2: String) -> void:
 	
-	var upgrade: Upgrade = chain.reference_object
-	upgrade._create_modifier(_effect2)
+	_create_modifier(_effect2)
 	
 	await Main.await_done(0.1)
 	
 	if _affected_object1 == "bot":
 		if _effect1 == "total":
-			bot1.count.total.book.add_adder(upgrade.modifier)
+			bot1.count.total.book.add_adder(modifier)
 	
-	chain.execute_next([_op_type, _operator, _affected_object1, _affected_object2,
-			_effect1, _effect2])
+	super(_op_type, _operator, _affected_object1, _affected_object2, _effect1, _effect2)
 
 
-func _on_bot_haste_changed(upgrade: Upgrade) -> void:
+func _on_bot_haste_changed() -> void:
 	var sell_duration: float = 0.0
 	var review_duration: float = 0.0
 	var email_duration: float = 0.0
 	var idle_duration: float = 0.0
 	
-	match upgrade.key:
+	match key:
 		&"bot_haste6":
 			idle_duration = -0.1875
 			email_duration = -0.375
@@ -103,7 +95,7 @@ func _on_bot_haste_changed(upgrade: Upgrade) -> void:
 			review_duration = -0.15
 			sell_duration = -0.275
 	
-	var multiplier: float = 1.0 if upgrade.applied.is_true() else -1.0
+	var multiplier: float = 1.0 if applied.is_true() else -1.0
 	bot1.sell_duration += sell_duration * multiplier
 	bot1.review_duration += review_duration * multiplier
 	bot1.email_duration += email_duration * multiplier
@@ -111,9 +103,9 @@ func _on_bot_haste_changed(upgrade: Upgrade) -> void:
 	bot1.update_durations()
 
 
-func _on_bot_weight_changed(upgrade: Upgrade) -> void:
-	var multiplier: float = 1.0 if upgrade.applied.is_true() else -1.0
-	match upgrade.key:
+func _on_bot_weight_changed() -> void:
+	var multiplier: float = 1.0 if applied.is_true() else -1.0
+	match key:
 		&"bot_email_weight1":
 			bot1.email_weight_obvious_fake -= 10.0 * multiplier
 			bot1.email_weight_lacking -= 7.5 * multiplier
@@ -126,19 +118,19 @@ func _on_bot_weight_changed(upgrade: Upgrade) -> void:
 			bot1.review_weight_insightful -= 2.5 * multiplier
 
 
-func _on_chart_update_changed(upgrade: Upgrade) -> void:
-	var multiplier: int = 1 if upgrade.applied.is_true() else -1
+func _on_chart_update_changed() -> void:
+	var multiplier: int = 1 if applied.is_true() else -1
 	curator1.main.refresh_rate_stage += multiplier
 	curator1.main.update_refresh_rate_stage()
 
 
-func _on_chart_limit_changed(upgrade: Upgrade) -> void:
-	var amount_gained: int = Upgrade.data[upgrade.key].get("Effect", 1)
-	var multiplier: float = 1.0 if upgrade.applied.is_true() else -1.0
+func _on_chart_limit_changed() -> void:
+	var amount_gained: int = Upgrade.data[key].get("Effect", 1)
+	var multiplier: float = 1.0 if applied.is_true() else -1.0
 	curator1.main.add_max_steam_games(int(amount_gained * multiplier))
 
 
-func _on_clock_upgrade_changed(upgrade: Upgrade) -> void:
+func _on_clock_upgrade_changed() -> void:
 	var amount_gained: float = 12.0
-	var multiplier: float = 1.0 if upgrade.applied.is_true() else -1.0
+	var multiplier: float = 1.0 if applied.is_true() else -1.0
 	curator1.main.calendar.day_duration.minus_equals(amount_gained * multiplier)
