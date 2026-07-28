@@ -178,7 +178,7 @@ func _on_sell_key_state_exited() -> void:
 			Currency.get_details(&"buck").get_icon_and_colored_plural_name(),
 		],
 	)
-	Currency.add(&"buck", key_price)
+	Currency.add(&"buck", key_price, true)
 	pending_production.plus_equals(key_price)
 
 
@@ -254,7 +254,7 @@ func _on_review_game_state_exited() -> void:
 
 	var followers_gained: int = _get_followers_gained(selected_game.followers)
 	if followers_gained > 0:
-		Currency.add(&"follower", followers_gained)
+		Currency.add(&"follower", followers_gained, true)
 
 	if selected_game.keys == 0 and selected_game.keys_in_use == 0:
 		selected_game.state = selected_game.State.EXHAUSTED
