@@ -1,6 +1,5 @@
 extends Node
 
-
 signal time_left_changed(time_left: float)
 signal status_text_changed
 
@@ -22,9 +21,11 @@ static var status_log: Array[String] = []
 static var pending_production := Big.new(0.0)
 
 var id: int
-var enabled: bool = false: set = _set_enabled
+var enabled: bool = false:
+	set = _set_enabled
 var selected_game: RefCounted ## Null if idle
-var status_text: String = "Not Deployed": set = _set_status_text
+var status_text: String = "Not Deployed":
+	set = _set_status_text
 
 #region Onready Variables
 
@@ -38,16 +39,14 @@ var status_text: String = "Not Deployed": set = _set_status_text
 
 #endregion
 
-
 #region Static
-
 
 static func update_count() -> void:
 	var bot_amount: BigFloat = Currency.get_amount(&"bot")
 	if bot_amount.is_greater_than(count.get_total()):
 		bot_amount.set_to(count.get_total())
 	count.current.set_to(bot_amount.current.to_int())
-	
+
 	for bot in list:
 		bot.enabled = bot.id < count.val()
 	for bot_node in Stage.fetch(&"curator1").node.bot_nodes.get_children():
@@ -83,30 +82,24 @@ static func _log_production() -> void:
 		Rate.log_production(main, &"buck", pending_production)
 		pending_production.set_to(0.0)
 
-
 #endregion
 
-
 #region Init
-
 
 func _ready() -> void:
 	id = get_index()
 	list.append(self)
 
-
 #endregion
 
-
 #region Setters
-
 
 func _set_enabled(new_val: bool) -> void:
 	if enabled == new_val:
 		return
-	
+
 	enabled = new_val
-	
+
 	if enabled:
 		_decide_next_action()
 	else:
@@ -119,15 +112,11 @@ func _set_status_text(new_text: String) -> void:
 	status_text = new_text
 	status_text_changed.emit()
 
-
 #endregion
-
 
 #region State
 
-
 #region Idle
-
 
 func _on_idle_state_entered() -> void:
 	_decide_next_action()
@@ -136,40 +125,35 @@ func _on_idle_state_entered() -> void:
 func _decide_next_action() -> void:
 	if not enabled:
 		return
-	
+
 	for game in main.steam_games:
 		if game.state == game.State.AWAITING_REVIEW:
 			selected_game = game
 			state_chart.send_event(&"review_game")
 			return
-		
+
 		if game.state == game.State.NEW_GAME:
 			selected_game = game
 			state_chart.send_event(&"send_email")
 			return
-		
+
 		if game.state >= game.State.REVIEW_BEING_WRITTEN and game.keys > 0:
 			selected_game = game
 			state_chart.send_event(&"sell_key")
 			return
-	
+
 	# Transitions to Cooldown state, which returns here after cooldown_duration
 	state_chart.send_event(&"no_tasks_available")
 
-
 #endregion
 
-
 #region Working
-
 
 func _on_working_child_state_exited() -> void:
 	time_left_changed.emit(0.0)
 	selected_game = null
 
-
 #region Sell Key
-
 
 func _on_sell_key_state_entered() -> void:
 	selected_game.keys -= 1
@@ -183,14 +167,17 @@ func _on_sell_key_state_processing(_delta: float) -> void:
 
 func _on_sell_key_state_exited() -> void:
 	selected_game.keys_in_use -= 1
-	
+
 	if selected_game.keys == 0 and selected_game.keys_in_use == 0:
 		selected_game.state = selected_game.State.EXHAUSTED
-	
+
 	var key_price: float = _get_key_price(selected_game)
-	add_to_log("Sold key for [b]+%s[/b] %s" % [
+	add_to_log(
+		"Sold key for [b]+%s[/b] %s" % [
 			LoudNumber.format_number(key_price),
-			Currency.get_details(&"buck").get_icon_and_colored_plural_name()])
+			Currency.get_details(&"buck").get_icon_and_colored_plural_name(),
+		],
+	)
 	Currency.add(&"buck", key_price)
 	pending_production.plus_equals(key_price)
 
@@ -200,10 +187,10 @@ func _get_key_price(game) -> float:
 	var days_until_release: int = game.days_until_release
 	var time_multiplier: float = _get_price_time_multiplier(days_until_release)
 	var popularity_modifier: float = _get_price_popularity_modifier(game.followers)
-	
+
 	var final_multiplier: float = time_multiplier * popularity_modifier * refactor_key_value_multiplier.val()
 	var key_price: float = base_price * final_multiplier * randf_range(0.75, 1.25)
-	
+
 	return key_price
 
 
@@ -232,12 +219,9 @@ func _get_price_popularity_modifier(followers: int) -> float:
 	else:
 		return 0.7
 
-
 #endregion
 
-
 #region Review Game
-
 
 enum ReviewQuality {
 	PEAK,
@@ -267,27 +251,27 @@ func _on_review_game_state_processing(_delta: float) -> void:
 func _on_review_game_state_exited() -> void:
 	selected_game.keys_in_use -= 1
 	selected_game.review_written = true
-	
+
 	var followers_gained: int = _get_followers_gained(selected_game.followers)
 	if followers_gained > 0:
 		Currency.add(&"follower", followers_gained)
-	
+
 	if selected_game.keys == 0 and selected_game.keys_in_use == 0:
 		selected_game.state = selected_game.State.EXHAUSTED
 
 
 func _get_followers_gained(game_followers: int) -> int:
 	var review_quality: ReviewQuality = _get_review_quality()
-	
+
 	var game_multiplier: float = _get_follower_gain_from_game_followers(game_followers)
 	var quality_multiplier: float = _get_review_quality_multiplier(review_quality)
-	
+
 	var base_followers: float = game_multiplier * quality_multiplier
 	base_followers = refactor_follower_gain_multiplier.times(base_followers)
 	var final_followers: float = base_followers * randf_range(0.75, 1.25)
-	
+
 	var result: int = LoudFloat.roll_as_int(final_followers)
-	
+
 	# Log the follower gain
 	var a_or_an: String = (
 			"An" if review_quality == ReviewQuality.INSIGHTFUL else "A")
@@ -298,9 +282,16 @@ func _get_followers_gained(game_followers: int) -> int:
 			follower_details.get_icon_and_plural_name() if result > 1 else \
 			follower_details.get_icon_and_name())
 	var plus: String = "+" if result > 0 else ""
-	add_to_log("%s %s review yielded [b]%s%s[/b] %s" % [
-			a_or_an, quality_text, plus, result, follower])
-	
+	add_to_log(
+		"%s %s review yielded [b]%s%s[/b] %s" % [
+			a_or_an,
+			quality_text,
+			plus,
+			result,
+			follower,
+		],
+	)
+
 	return result
 
 
@@ -330,10 +321,10 @@ func _get_review_quality() -> ReviewQuality:
 		ReviewQuality.USELESS,
 		ReviewQuality.HARMFUL,
 	]
-	
+
 	if review_weight_insightful == 0.0:
 		return ReviewQuality.PEAK
-	
+
 	var weights: Array[float] = [
 		1.0,
 		review_weight_insightful,
@@ -343,12 +334,9 @@ func _get_review_quality() -> ReviewQuality:
 	]
 	return REVIEW_QUALITIES[Utility.rng.rand_weighted(weights)]
 
-
 #endregion
 
-
 #region Send Email
-
 
 enum EmailQuality {
 	PROFESSIONAL,
@@ -377,29 +365,39 @@ func _on_send_email_state_exited() -> void:
 	var base_key_chance: float = _get_base_chance(selected_game.followers)
 	var email_quality := _get_email_quality()
 	var quality_multiplier: float = _get_email_quality_multiplier(email_quality)
-	
+
 	var chance_of_receiving_keys: float = base_key_chance * quality_multiplier
-	
+
 	var a_or_an: String = (
 			"An" if email_quality == EmailQuality.OBVIOUS_FAKE else "A")
 	var email_quality_text: String = (
 			EmailQuality.keys()[email_quality].capitalize().to_lower())
-	
+
 	if randf() < chance_of_receiving_keys:
 		selected_game.keys += _get_key_gain(selected_game.followers)
 		selected_game.state = selected_game.State.AWAITING_REVIEW
-		
+
 		var key_text: String = ResourceBag.get_icon_text(
-				"SteamCuratorTycoon_key", selected_game.color)
-		add_to_log("%s %s email yielded [b]+%s[/b] %s keys" % [
-				a_or_an, email_quality_text, selected_game.keys, key_text])
-	
+			"SteamCuratorTycoon_key",
+			selected_game.color,
+		)
+		add_to_log(
+			"%s %s email yielded [b]+%s[/b] %s keys" % [
+				a_or_an,
+				email_quality_text,
+				selected_game.keys,
+				key_text,
+			],
+		)
+
 	else:
 		if selected_game.node:
 			var due_to: String = (
 					"Despite" if email_quality <= EmailQuality.GOOD else "Due to")
-			selected_game.node.reason_label._set_text("(%s %s [b]%s[/b] email)" %
-					[due_to, a_or_an.to_lower(), email_quality_text])
+			selected_game.node.reason_label.write(
+				"(%s %s [b]%s[/b] email)" %
+				[due_to, a_or_an.to_lower(), email_quality_text],
+			)
 		selected_game.state = selected_game.State.DECLINED
 		add_to_log("%s %s email was declined" % [a_or_an, email_quality_text])
 
@@ -458,8 +456,9 @@ func _get_key_gain(followers: int) -> int:
 	var follower_multiplier: float = _get_key_gain_follower_multiplier()
 	var rand: float = randf_range(0.75, 1.25)
 	var sum: float = refactor_key_gain_multiplier.times(
-			base_gain * follower_multiplier * rand)
-	
+		base_gain * follower_multiplier * rand,
+	)
+
 	return maxi(LoudFloat.roll_as_int(sum), 1)
 
 
@@ -480,25 +479,21 @@ func _get_base_key_gain(followers: int) -> float:
 
 func _get_key_gain_follower_multiplier() -> float:
 	var followers: float = Currency.get_value(&"follower").to_float()
-	
+
 	if followers < 100:
 		return randf_range(0.01, 0.1)
-	
+
 	var log_followers: float = log(followers) / log(10.0)
 	var base_multiplier: float = log_followers - 1.5
 	var final_multiplier: float = base_multiplier * 0.3 * randf_range(0.8, 1.2)
-	
+
 	return 1.0 + final_multiplier
 
-
 #endregion
 
-
 #endregion
-
 
 #region Cooldown
-
 
 func _on_cooldown_state_entered() -> void:
 	status_text = "Idle"
@@ -511,12 +506,9 @@ func _on_cooldown_state_processing(_delta: float) -> void:
 func _on_cooldown_state_exited() -> void:
 	time_left_changed.emit(0.0)
 
-
 #endregion
-
 
 func _on_stop_working_taken() -> void:
 	status_text = "Not Deployed"
-
 
 #endregion

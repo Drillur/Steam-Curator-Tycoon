@@ -340,7 +340,15 @@ modulate = Color(0.75, 0.75, 0.75, 1)
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "2. Review games for Followers!"
+text = "2. One key is used to review the game to gain Followers!"
+fit_content = true
+
+[node name="BotCountLabel7" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/VBoxContainer2" unique_id=1412264230]
+modulate = Color(0.75, 0.75, 0.75, 1)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "  (Followers increase the chance of receiving keys and how many you receive.)"
 fit_content = true
 
 [node name="BotCountLabel5" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/VBoxContainer2" unique_id=779959644]
@@ -348,7 +356,15 @@ modulate = Color(0.75, 0.75, 0.75, 1)
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "3. Sell keys for Bux!"
+text = "3. The remaining keys are sold for Bux!"
+fit_content = true
+
+[node name="BotCountLabel6" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Bots/VBoxContainer2" unique_id=1166486664]
+modulate = Color(0.75, 0.75, 0.75, 1)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "  (The price is increased by how far away from release the game is.)"
 fit_content = true
 
 [node name="SteamGames" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1948799488]
@@ -356,13 +372,26 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 16
 
-[node name="RefreshLabel" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames" unique_id=1666279284]
+[node name="HBoxContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames" unique_id=172209384]
+layout_mode = 2
+
+[node name="RefreshLabel" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/HBoxContainer" unique_id=1666279284]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 mouse_filter = 2
 theme = ExtResource("5_vag62")
 text = "Games refresh daily"
+fit_content = true
+autowrap_mode = 0
+
+[node name="RefreshLabel2" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SteamGames/HBoxContainer" unique_id=1129731100]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+theme = ExtResource("10_8fr1x")
+bbcode_enabled = true
+text = "[i]Sorted by Follower count[/i]"
 fit_content = true
 autowrap_mode = 0
 
