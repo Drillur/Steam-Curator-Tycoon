@@ -6,10 +6,11 @@ extends Node
 ## 3. Leave a review for the game, accruing followers
 ## 4. Sell the remaining keys for profit!!!
 
-## Name of the directory that this file is in
-const DRILLUR_STEAMCURATORTYCOON_DIR := "Drillur-SteamCuratorTycoon"
-## Full ID of the mod (AuthorName-ModName)
-const DRILLUR_STEAMCURATORTYCOON_LOG_NAME := "Drillur-SteamCuratorTycoon:Main"
+## Because LORED loads a LORED's or Upgrade's class directly from its script path, adding script
+## hooks or script extensions via Godot Mod Loader is not necessary for those or similar classes
+
+const MOD_DIR := "Drillur-SteamCuratorTycoon"
+const LOG_NAME := "Drillur-SteamCuratorTycoon:Main"
 
 var mod_dir_path := ""
 var extensions_dir_path := ""
@@ -18,36 +19,7 @@ var translations_dir_path := ""
 #region Mod Init
 
 func _init() -> void:
-	ModLoaderLog.info("Init", DRILLUR_STEAMCURATORTYCOON_LOG_NAME)
-
-	mod_dir_path = ModLoaderMod.get_unpacked_dir().path_join(
-		DRILLUR_STEAMCURATORTYCOON_DIR,
-	)
-	_install_script_extensions()
-	_install_script_hook_files()
-
-
-func _install_script_extensions() -> void:
-	extensions_dir_path = mod_dir_path.path_join("extensions")
-	#ModLoaderMod.install_script_extension(extensions_dir_path.path_join(
-	#"essentials/scripts/resource_bag.gd"))
-
-
-func _install_script_hook_files() -> void:
-	extensions_dir_path = mod_dir_path.path_join("extensions")
-	#ModLoaderMod.add_hook(_post_init,
-	#"res://groups/upgrade/upgrades/upgrade.gd",
-	#"_post_init")
-	#ModLoaderMod.install_script_hooks(
-	#"res://groups/upgrade/upgrades/upgrade.gd",
-	#extensions_dir_path.path_join("upgrade/upgrades/sct_upgrade.gd"))
-
-	#ModLoaderMod.add_hook(_can_start_job,
-	#"res://groups/lored/scripts/lored.gd",
-	#"_can_start_job")
-	#ModLoaderMod.install_script_hooks(
-	#"res://groups/lored/scripts/lored.gd",
-	#extensions_dir_path.path_join("lored/scripts/sct_lored.gd"))
+	ModLoaderLog.info("Init", LOG_NAME)
 
 #endregion
 
@@ -57,9 +29,8 @@ var calendar: Calendar
 
 
 func _ready() -> void:
-	ModLoaderLog.info("Ready", DRILLUR_STEAMCURATORTYCOON_LOG_NAME)
+	ModLoaderLog.info("Ready", LOG_NAME)
 
-	Utility.dev_mode = true
 	ResourceBag.skip_base_data()
 
 	Rate.new(self, [&"buck"])
@@ -67,9 +38,9 @@ func _ready() -> void:
 	calendar = Calendar.new(24.0)
 	calendar.start()
 
-	ModLoaderLog.info("Cacher: Await done", DRILLUR_STEAMCURATORTYCOON_LOG_NAME)
+	ModLoaderLog.info("Cacher: Await done", LOG_NAME)
 	await Cacher.done.became_true
-	ModLoaderLog.info("Cacher: Done", DRILLUR_STEAMCURATORTYCOON_LOG_NAME)
+	ModLoaderLog.info("Cacher: Done", LOG_NAME)
 
 	_init_steam_games()
 
